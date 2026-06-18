@@ -60,8 +60,8 @@ mesh = Mesh(xml_file)
 area = 4862.22
 # Finite Element space for the concentration
 P1 = FiniteElement('P', mesh.ufl_cell(), 1)
-element = MixedElement([P1,P1,P1,P1,P1,P1])
-#element = VectorElement('P', mesh.ufl_cell(), 1, dim=6)
+#element = MixedElement([P1,P1,P1,P1,P1,P1])
+element = VectorElement('P', mesh.ufl_cell(), 1, dim=6)
 V = FunctionSpace(mesh,element) 
 
 # Define test functions
@@ -107,7 +107,7 @@ g_hxk = Expression("1./(pi*2*sigma*sigma) * exp(-((x[0]-x0)*(x[0]-x0)+(x[1]-y0)*
 
 g = interpolate(g_hxk, V)
 
-plot(g)
+
 File("gaussian.pvd") << g
 
 # Define the Gaussian function indicating where PYRK reaction take place
